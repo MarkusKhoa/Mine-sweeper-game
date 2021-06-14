@@ -31,13 +31,25 @@ const cols = 10;
 
 function preload() {
     for(let key in img_names){
-        loadImage(assets, img_names[key], (img) => {
+        loadImage(assets + img_names[key], img => {
             img.resize(imageSize, imageSize);
-            if(key >= 0 && key <= 8){
-                img_nums[key] = img;
+            if(+key >= 0 && +key <= 8){
+                img_nums[+key] = img;
             }
             else if(key === 'not_touch'){
                 img_untouched = img;
+            }
+            else if(key === 'bomb_flag'){
+                img_bomb_flag = img;
+            }
+            else if(key === 'bomb'){
+                img_bomb = img;
+            }
+            else if(key === 'bomb_red'){
+                img_bomb_red = img;
+            }
+            else if(key === 'bomb_wrong'){
+                img_bomb_wrong  = img;
             }
         });
     }

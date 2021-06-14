@@ -10,9 +10,12 @@ class cell{
 
     reveal(){
         if(this.reveal) return true;
+        if(this.isBombed) return false;
+        this.reveal = true;
+        return true;
     }
 
     draw(){
-        
+        image(img_nums[this.bombs], this.row * imageSize, this.col * imageSize);
     }
 }
