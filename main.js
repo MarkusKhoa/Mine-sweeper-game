@@ -1,4 +1,4 @@
-const assets = '/img';
+const assets = 'img/';
 const img_names = {
     0: 'number-0.png',
     1: 'number-1.png',
@@ -20,11 +20,25 @@ const img_names = {
     scare_face: 'scare_face.png',
 }
 
+let img_nums = [];
+let img_untouched, img_bomb_flag, img_bomb, img_bomb_red, img_bomb_wrong;
+
+let imageSize = 50;
+let bombs = Math.floor(rows * cols * 0.05);
+let width, height, board;
+const rows = 5;
+const cols = 10;
+
 function preload() {
     for(let key in img_names){
-        loadImage(assets, img_names[key], img ={
+        loadImage(assets, img_names[key], (img) => {
             img.resize(imageSize, imageSize);
-            images.push({key: key, image: img});
+            if(key >= 0 && key <= 8){
+                img_nums[key] = img;
+            }
+            else if(key === 'not_touch'){
+                img_untouched = img;
+            }
         });
     }
 }
@@ -37,7 +51,7 @@ function setup(){
 }
 
 function draw() {
-    background(255);
+    background(25);
     drawBoard();
     noLoop();
 }
