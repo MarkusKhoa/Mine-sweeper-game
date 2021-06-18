@@ -11,23 +11,24 @@ const img_names = {
     8: 'number-8.png',
     bomb: 'bomb.png',
     not_touch: 'square_PNG95.png',
-    bomb_flag: 'bombflag.png',
+    bomb_flag: 'bomb_flag.png',
     bomb_smile: 'bomb_smile.png',
     bomb_red: 'bomb_red.png',
     bomb_wrong: 'bomb_wrong.png',
     clock: 'clock.png',
-    sobom: 'sobom.png',
+    sobom: 'so-bomb.png',
     scare_face: 'scare_face.png',
 }
 
 let img_nums = [];
 let img_untouched, img_bomb_flag, img_bomb, img_bomb_red, img_bomb_wrong;
 
-let imageSize = 50;
-let bombs = Math.floor(rows * cols * 0.05);
-let width, height, board;
+let imageSize = 70;
 const rows = 5;
 const cols = 10;
+let bombs = Math.floor(rows * cols * 0.05);
+let bombs_left = bombs;
+let width, height, board;
 
 function preload() {
     for(let key in img_names){
@@ -60,6 +61,7 @@ function setup(){
     height = windowHeight - 30;
     createCanvas(width, height);
     init();
+    console.log(bombs);
 }
 
 function draw() {
@@ -70,17 +72,17 @@ function draw() {
 
 function init(){
     this.board = [];
-    for (let row = 0; row < rows; i++) {
+    for (let row = 0; row < rows; row++) {
         this.board[row] = [];
-        for (let col = 0; col < cols; j++) {
-            this.board[row][col] = new Cell(i, j);
+        for (let col = 0; col < cols; col++) {
+            this.board[row][col] = new Cell(row, col);
         }
     }
 }
 
 function drawBoard() {
-    for(let row = 0; row < rows; i++) {
-        for(let col = 0; col < cols; j++) {
+    for(let row = 0; row < rows; row++) {
+        for(let col = 0; col < cols; col++) {
             this.board[row][col].draw();
         }
     }
